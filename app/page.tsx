@@ -1,64 +1,33 @@
-import { Card, CardBody, Heading, Image, Link, Stack, Text } from "@chakra-ui/react";
+"use client"
+import { Box, Card, CardBody, Heading, Image, Link, Stack, Text, useBreakpointValue } from "@chakra-ui/react";
 import Header from "./components/header";
+import BlogCard from "./components/card";
 
 export default function Home() {
+  // Using useBreakpointValue for dynamic values based on breakpoints
+  const paddingX = useBreakpointValue({ base: '20px', md: '105px' });
   return (
     <div>
       <Header/>
-      <div style={{backgroundColor:'#F5F9FB',height:'100%',width:'100%', paddingTop:'40px'}} >
-            <div style={{height:'100px',width:'100%',paddingLeft:'105px'}}>
-                <div style={{backgroundColor:'white',height:'100px',width:'90%',padding: '25px 0px 0px 20px',fontSize:'30px', font:'bold'}}>
-                    <h1>
-                        Currently Browsing: Design
-                    </h1>
-                </div>
-            </div>
-            <div style={{backgroundColor:'',height:'100%',width:'100%',paddingTop:'40px'}}>
-                <div style={{height:'100%',width:'100%', paddingLeft:'105px'}}>
-                    <Stack direction={['column','row']} style={{backgroundColor:'white',height:'100%',width:'90%'}}>
-                        <Card style={{backgroundColor:'', height:'100%',width:'33%'}}>
-                            <CardBody>
-                                <Image src='https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80'
-                                alt='Image'>
-                                </Image>
-                                <br />
-                                <Link _hover={{textDecoration:'none'}}>DESIGN</Link>
-                                <br />
-                                <Heading size='lg'>TITLE OF THE BLOG</Heading>
-                                <br />
-                                <Text>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, assumenda! Dolores, aperiam. Mollitia ut quas consequatur delectus velit, iure ipsum illo totam maxime, officia sapiente, incidunt aliquam optio quibusdam sed?</Text>
-                            </CardBody>
-                        </Card>
-                        <Card style={{backgroundColor:'', height:'100%',width:'33%'}}>
-                            <CardBody>
-                                <Image src='https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80'
-                                alt='Image'>
-                                </Image>
-                                <br />
-                                <Link _hover={{textDecoration:'none'}}>DESIGN</Link>
-                                <br />
-                                <Heading size='lg'>TITLE OF THE BLOG</Heading>
-                                <br />
-                                <Text>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, assumenda! Dolores, aperiam. Mollitia ut quas consequatur delectus velit, iure ipsum illo totam maxime, officia sapiente, incidunt aliquam optio quibusdam sed?</Text>
-                            </CardBody>
-                        </Card>
-                        <Card style={{backgroundColor:'', height:'100%',width:'33%'}}>
-                            <CardBody>
-                                <Image src='https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80'
-                                alt='Image'>
-                                </Image>
-                                <br />
-                                <Link _hover={{textDecoration:'none'}}>DESIGN</Link>
-                                <br />
-                                <Heading size='lg'>TITLE OF THE BLOG</Heading>
-                                <br />
-                                <Text>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, assumenda! Dolores, aperiam. Mollitia ut quas consequatur delectus velit, iure ipsum illo totam maxime, officia sapiente, incidunt aliquam optio quibusdam sed?</Text>
-                            </CardBody>
-                        </Card>
-                    </Stack>
-                </div>
-            </div>    
-        </div>
+      <Box backgroundColor='#F5F9FB' w='100%' pt='40px'>
+        <Box w='100%' px={paddingX}>
+          <Box backgroundColor='white' w='100%' py='25px' px='20px' fontSize='30px' fontWeight='bold'>
+            <h1>Currently Browsing: Design</h1>
+          </Box>
+        </Box>
+        <BlogCard/>
+      </Box>
+      <Grid
+  h='200px'
+  templateRows='repeat(2, 1fr)'
+  templateColumns='repeat(5, 1fr)'
+  gap={4}
+>
+  <GridItem rowSpan={2} colSpan={1} bg='tomato' />
+  <GridItem colSpan={2} bg='papayawhip' />
+  <GridItem colSpan={2} bg='papayawhip' />
+  <GridItem colSpan={4} bg='tomato' />
+</Grid>
     </div>
   );
 }
