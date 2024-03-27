@@ -2,6 +2,7 @@
 import { Box, Card, CardBody, Heading, Image, Link, Stack, Text, useBreakpointValue } from "@chakra-ui/react";
 import Header from "./components/header";
 import BlogCard from "./components/card";
+import GridCard from "./components/gcard";
 
 export default function Home() {
   // Using useBreakpointValue for dynamic values based on breakpoints
@@ -15,19 +16,8 @@ export default function Home() {
             <h1>Currently Browsing: Design</h1>
           </Box>
         </Box>
-        <BlogCard/>
+        <GridCard/>
       </Box>
-      <Grid
-  h='200px'
-  templateRows='repeat(2, 1fr)'
-  templateColumns='repeat(5, 1fr)'
-  gap={4}
->
-  <GridItem rowSpan={2} colSpan={1} bg='tomato' />
-  <GridItem colSpan={2} bg='papayawhip' />
-  <GridItem colSpan={2} bg='papayawhip' />
-  <GridItem colSpan={4} bg='tomato' />
-</Grid>
     </div>
   );
 }

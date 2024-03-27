@@ -1,5 +1,5 @@
 "use client"
-import { Box, Card, CardBody, Heading, Image, Link, Stack, Text, useBreakpointValue } from '@chakra-ui/react'
+import { Box, Card, CardBody, Grid, Heading, Image, Link, Stack, Text, useBreakpointValue } from '@chakra-ui/react'
 import React from 'react'
 
 export default function BlogCard() {
@@ -8,7 +8,7 @@ export default function BlogCard() {
   return (
     <div>
         <Box pt='40px' px={paddingX}>
-          <Stack direction={{ base: 'column', lg: 'row' }} spacing={4}>
+          <Stack direction={{ base: 'column', md: 'row' }} spacing={4}>
             {/* Repeated Card Component */}
             {[1, 2, 3].map((_, index) => (
               <Card backgroundColor='#F5F9FB' alignItems='center' w={cardWidth} key={index}>

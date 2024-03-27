@@ -2,6 +2,7 @@
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { Box, Flex, Heading, IconButton, Link, Menu, MenuButton, Stack, useDisclosure, Collapse } from "@chakra-ui/react";
 import { FaBars, FaFacebookF, FaPinterestP, FaTwitter } from "react-icons/fa";
+import GridCard from "../components/gcard";
 
 export default function Main() {
   const { isOpen, onToggle } = useDisclosure();
