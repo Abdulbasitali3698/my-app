@@ -1,12 +1,19 @@
 "use client"
-import { Box, Card, CardBody, Heading, Image, Link, Stack, Text, useBreakpointValue } from "@chakra-ui/react";
+import { Box, Button, Card, CardBody, Heading, Image, Link, Modal, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Stack, Text, useBreakpointValue, useDisclosure } from "@chakra-ui/react";
 import Header from "./components/header";
 import BlogCard from "./components/card";
 import GridCard from "./components/gcard";
+import { SetStateAction, useState } from "react";
 
 export default function Home() {
+  const {isOpen, onOpen, onClose}=useDisclosure();
+  const [currentTitle, setCurrentTitle] = useState('');
   // Using useBreakpointValue for dynamic values based on breakpoints
   const paddingX = useBreakpointValue({ base: '20px', md: '105px' });
+  const handleOpenModal = (title: SetStateAction<string>) => {
+    setCurrentTitle(title);
+    onOpen();
+  };
   return (
     <div>
       <Header/>
@@ -16,8 +23,21 @@ export default function Home() {
             <h1>Currently Browsing: Design</h1>
           </Box>
         </Box>
-        <GridCard/>
+        <GridCard onOpenModal={handleOpenModal}/>
       </Box>
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>{currentTitle}</ModalHeader>
+          <ModalCloseButton />
+          <ModalFooter>
+            <Button colorScheme='blue' mr={3} onClick={onClose}>
+              Close
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </div>
+    
   );
 }

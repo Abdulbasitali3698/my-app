@@ -2,19 +2,16 @@
 import { Box, Button, Card, CardBody, Grid, Heading, Image, Link, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, useBreakpointValue, useDisclosure } from '@chakra-ui/react';
 import React, { useState } from 'react';
 
-export default function GridCard() {
-    const[currentTitle, setCurrentTitle]=useState('');
-  const {isOpen, onOpen, onClose}=useDisclosure();
+interface GridCardProps {
+    onOpenModal: (title: string) => void;
+  }
+export default function GridCard({ onOpenModal }: GridCardProps) {
   const paddingX = useBreakpointValue({ base: '20px', md: '105px' });
   const gridTemplateColumns = useBreakpointValue({
     base: 'repeat(1, 1fr)', 
     md: 'repeat(2, 1fr)',  
     lg: 'repeat(3, 1fr)', 
   });
-  const handleOpenModal=(title)=>{
-    setCurrentTitle(title);
-    onOpen();
-  };
   return (
     <Box pt='40px' px={paddingX}>
       <Grid templateColumns={gridTemplateColumns} gap={6}>
@@ -27,19 +24,7 @@ export default function GridCard() {
             <CardBody>
               <Image src='https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80' alt='Image' />
               <br />
-              <Link _hover={{ textDecoration: 'none', color: '#4DA3BF' }} onClick={()=>handleOpenModal(card.title)} >DESIGN</Link>
-              {/* <Modal isOpen={isOpen} onClose={onClose}>
-                    <ModalOverlay />
-                    <ModalContent>
-                    <ModalHeader>Modal Title</ModalHeader>
-                    <ModalCloseButton />
-                    <ModalFooter>
-                        <Button colorScheme='blue' mr={3} onClick={onClose}>
-                        Close
-                        </Button>
-                    </ModalFooter>
-                    </ModalContent>
-                </Modal> */}
+              <Link _hover={{ textDecoration: 'none', color: '#4DA3BF' }} onClick={() => onOpenModal(card.title)}>DESIGN</Link>
               <br />
               <Heading size='lg'>{card.title}</Heading>
               <br />
@@ -48,7 +33,7 @@ export default function GridCard() {
           </Card>
         ))}
       </Grid>
-      <Modal isOpen={isOpen} onClose={onClose}>
+      {/* <Modal isOpen={isOpen} onClose={onClose}>
                     <ModalOverlay />
                     <ModalContent>
                     <ModalHeader>{currentTitle}</ModalHeader>
@@ -59,7 +44,7 @@ export default function GridCard() {
                         </Button>
                     </ModalFooter>
                     </ModalContent>
-                </Modal>
+                </Modal> */}
     </Box>
   );
 }
