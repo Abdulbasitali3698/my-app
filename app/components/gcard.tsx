@@ -3,7 +3,7 @@ import { Box, Button, Card, CardBody, Grid, Heading, Image, Link, Modal, ModalBo
 import React, { useState } from 'react';
 
 interface GridCardProps {
-    onOpenModal: (title: string) => void;
+    onOpenModal: (blog:{title:string, image:string, description:string})=>void;
   }
 export default function GridCard({ onOpenModal }: GridCardProps) {
   const paddingX = useBreakpointValue({ base: '20px', md: '105px' });
@@ -16,19 +16,34 @@ export default function GridCard({ onOpenModal }: GridCardProps) {
     <Box pt='40px' px={paddingX}>
       <Grid templateColumns={gridTemplateColumns} gap={6}>
         {[
-            {title:"Title Of The Blog 1", id:1},
-            {title:"Title Of The Blog 2", id:2},
-            {title:"Title Of The Blog 3", id:3}
+            {
+            title:"Title Of The Blog 1",
+            image:"https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
+            description:"Description of the Blog 1",
+            id:1
+            },
+            {
+            title:"Title Of The Blog 2",
+            image:"https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
+            description:"Description of the Blog 2",
+            id:2
+            },
+            {
+            title:"Title Of The Blog 3",
+            image:"https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
+            description:"Description of the Blog 3",
+            id:3
+          },
         ].map((card) => (
           <Card backgroundColor='#F5F9FB' alignItems='center' key={card.id}>
             <CardBody>
-              <Image src='https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80' alt='Image' />
+              <Image src={card.image} alt='Image' />
               <br />
-              <Link _hover={{ textDecoration: 'none', color: '#4DA3BF' }} onClick={() => onOpenModal(card.title)}>DESIGN</Link>
+              <Link _hover={{ textDecoration: 'none', color: '#4DA3BF' }} onClick={() => onOpenModal(card)}>DESIGN</Link>
               <br />
               <Heading size='lg'>{card.title}</Heading>
               <br />
-              <Text>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, assumenda! Dolores, aperiam. Mollitia ut quas consequatur delectus velit, iure ipsum illo totam maxime, officia sapiente, incidunt aliquam optio quibusdam sed?</Text>
+              <Text>{card.description}</Text>
             </CardBody>
           </Card>
         ))}
