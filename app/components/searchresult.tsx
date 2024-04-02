@@ -1,5 +1,5 @@
 "use client"
-import { Box, Heading, Text } from '@chakra-ui/react';
+import { Box, Heading, Stack, Text } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react'
 
 export default function SearchResult({query}) {
@@ -18,13 +18,17 @@ export default function SearchResult({query}) {
         }
     },[query]);
   return (
-    <Box>
-        {posts.map(post =>(
-            <Box key={post.id}>
-                <Heading>{post.title}</Heading>
-                <Text>{post.body}</Text>
-            </Box>
+    <Box p={5}>
+      <Heading mb={4}>Posts</Heading>
+      <Stack spacing={8}>
+        {posts.map(post => (
+          <Box key={post.id} p={5} shadow="md" borderWidth="1px">
+            <Text mt={4}>{post.id}</Text>
+            <Heading fontSize="xl">{post.title}</Heading>
+            <Text mt={4}>{post.body}</Text>
+          </Box>
         ))}
+      </Stack>
     </Box>
   )
 }
