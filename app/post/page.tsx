@@ -1,5 +1,5 @@
 "use client"
-import { Box, Heading, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, Stack, Text, useDisclosure } from '@chakra-ui/react';
+import { Avatar, Box, Flex, Heading, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, Stack, Text, useDisclosure } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react'
 
 export default function FetchPosts() {
@@ -36,24 +36,28 @@ export default function FetchPosts() {
         ))}
       </Stack>
       <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay/>
+        <ModalOverlay />
         <ModalContent>
-            <ModalHeader>
-                {selectedPosts?.title}
-            </ModalHeader>
-            <ModalCloseButton/>
-            <ModalBody>
-                <Text>{selectedPosts?.body}</Text>
-                <Text>Modal ID:{selectedPosts?.id}</Text>
-                {selectedPosts?.comments.map(comment=>(
-                    <Box key={comment.id}>
-                        <Text>{comment.name}</Text>
-                        <Text>{comment.body}</Text>
-                    </Box>
-                ))}
-            </ModalBody>
+          <ModalHeader>
+            {selectedPosts?.title}
+          </ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Text>{selectedPosts?.body}</Text>
+            <Text>Modal ID: {selectedPosts?.id}</Text>
+            {selectedPosts?.comments.map(comment => (
+              <>
+              <Flex key={comment.id} mt={4} gap='3' flexDirection='row'>
+                <Avatar name={comment.name} size='sm'></Avatar>
+                <Text fontWeight="bold">{comment.name}:</Text>
+              </Flex>
+              <Text>{comment.body}</Text>
+              </>
+            ))}
+          </ModalBody>
         </ModalContent>
       </Modal>
+
     </Box>
   )
 }
