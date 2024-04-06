@@ -6,6 +6,7 @@ import GridCard from "./components/gcard";
 import { SetStateAction, useState } from "react";
 
 export default function Home() {
+
   const {isOpen, onOpen, onClose}=useDisclosure();
   //const [currentTitle, setCurrentTitle] = useState('');
   const[currentBlog,setCurrentBlog]=useState({});
